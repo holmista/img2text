@@ -1,0 +1,52 @@
+.fileupload{
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    width: 320px;
+    border-width: 1px;
+    border-color:rgb(33, 154, 224);
+    border-style:groove;
+    padding: 10px;
+    margin-top: 10rem;
+    
+}
+.image{
+    
+    display: flex;
+    justify-content: center;
+}
+.thisimage{
+    border-radius: 10%;
+    max-width: 700px;
+    max-height: 600px;
+}
+.upload{
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    
+}
+.button{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+
+.input{
+    width: 190px;
+    margin-top: 0.75rem;
+} 
+.output{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    height: auto;
+    
+    word-wrap: break-word;
+}
+.root{
+    background-color: blue;
+    height:1080px;
+}
+
