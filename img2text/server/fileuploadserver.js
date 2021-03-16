@@ -18,8 +18,8 @@ app.post('/upload', (req,res)=>{
     // ()=>remove(img)
     
 })
-app.listen(5000, () => {
-    console.log('server is running at port 5000');
+app.listen(process.env.PORT || 5000, () => {
+    // console.log('server is running at port 5000');
 })
 async function convert(img){
   const worker = createWorker();
@@ -30,7 +30,7 @@ async function convert(img){
   await worker.initialize('eng');
   const { data: { text } } = await worker.recognize(img);
   
-  console.log(text);
+  // console.log(text);
   await worker.terminate();
   return text
     
