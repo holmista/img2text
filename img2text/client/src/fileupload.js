@@ -8,6 +8,7 @@ function FileUpload(){
     const[imagetext, setimagetext] = useState('')
     const [loading, setloading] = useState(false)
     const [able, setable] = useState(false)
+    const [notsupported, setnotsupported] = useState(false)
     
     const upload = async()=>{
         setable(false)
@@ -15,7 +16,7 @@ function FileUpload(){
         const formdata = new FormData();
         formdata.append('file',file);
         try{
-            const res = await axios.post('http://localhost:5000/upload', formdata)
+            const res = await axios.post('http://img2-text.herokuapp.com/', formdata)
             let text = res.data
             setloading(false)
             setimagetext(text)
@@ -32,20 +33,29 @@ function FileUpload(){
             setable(false)
             setpreview(false)
         }else{
-            file = e.target.files[0]
-            setable(true)
-
+            if(e.target.files[0].type=='image/jpeg'||e.target.files[0].type=='image/png'){
+                file = e.target.files[0]
+                setable(true)
+                setnotsupported(false)
+            }else{
+                console.log('not supported type')
+                setable(false)
+                setnotsupported(true)
+            }
         }
-        console.log(file)
+        
         // const file = e.target.files[0]
         // setfile(file)
         try{
             // const preview= URL.createObjectURL(e.target.files[0])
             const preview= URL.createObjectURL(file)
             setpreview(preview)
+            
         }
         catch(err){
             console.log(err)
+            
+            setpreview(false)
         }
         setfile(file)
         
@@ -53,6 +63,7 @@ function FileUpload(){
     }
     return(
         <div>
+            {notsupported ? <h2>this type of file is not supported</h2>:''}
             {loading ? <ClipLoader color={'#D736D3'} loading={loading} size={30} />:''}
             <div className='image'>
                 <img className='thisimage' src={preview} />
