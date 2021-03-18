@@ -8,7 +8,7 @@ const app = express();
 app.use(cors()); 
 app.use(fileUpload());
 
-app.post('/', (req,res)=>{
+app.post('/expres', (req,res)=>{
     
     const myFile = req.files.file;
     myFile.mv(`D:/web_projects/react-express-mongodb-template/server/pictures/${myFile.name}`)
